@@ -1,11 +1,11 @@
 body {
-  background: #cdaa66;
+  background: #D32F2F;
 }
 
 /* Center the content */
 
 #content, #clock {
-  margin: 0 auto;
+  margin: 25px auto 0;
 }
 #content {
   width: 100%;
@@ -324,5 +324,24 @@ $clock_container_gradient2_start: 68.7%;
       display: block;
       padding-top: 2600%; /* adjust this if you change the thickness (width) of the pointer; generally: width% * 2500 */
     }
+  }
+}
+
+
+
+/* Info */
+.info {
+  color: #FFFFFF;
+  text-align: center;
+  font-family: Verdana, sans-serif;
+  font-size: 14px;
+  margin: 65px auto 0;
+  width: 100%;
+  max-width: 450px;
+  a {
+    color: #FFFFFF;
+    font-weight: bold;
+    text-decoration: none;
+    &:hover { color: #FFCDD2; }
   }
 }
