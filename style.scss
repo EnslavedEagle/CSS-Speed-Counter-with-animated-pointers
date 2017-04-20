@@ -1,0 +1,328 @@
+body {
+  background: #cdaa66;
+}
+
+/* Center the content */
+
+#content, #clock {
+  margin: 0 auto;
+}
+#content {
+  width: 100%;
+  max-width: 600px;
+}
+
+
+/* Counter */
+
+.circle {
+  border-radius: 100%;
+}
+
+.absolutely_centered {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+$clock_scale: 1.0;
+
+$clock_container_gradient1_start: 60%;
+$clock_container_gradient2_start: 68.7%;
+
+.clock {
+  &__container {
+    background:
+      /* White gradient at the very top */
+      radial-gradient(
+        circle at top center,
+        rgba(#fff, 0.9)   0%,
+        rgba(#fff, 0.7)   $clock_container_gradient1_start,
+        rgba(#fff, 0.0)   100%
+      ),
+      /* the grey bevel around counter */
+      radial-gradient(
+        #fff 0%,
+        #fff $clock_container_gradient2_start,
+        #bcbcbc $clock_container_gradient2_start + 0.2%,
+        #bcbcbc $clock_container_gradient2_start + 1.0%,
+        #bcbcbc $clock_container_gradient2_start + 9.8%,
+        #bcbcbc $clock_container_gradient2_start + 9.9%,
+        #aaa 100%
+      );
+    border: 0;
+    border-radius: 100%;
+    box-shadow: 0 0 4px rgba(0,0,0,.3);
+    width: 100%;
+    height: auto;
+    position: relative;
+    transform: scale($clock_scale);
+
+    &::before {
+      @extend .absolutely_centered;
+      @extend .circle;
+      content: '';
+      display: block;
+      width: 91.5%;
+      height: 91.5%;
+      background: linear-gradient(to bottom, #d5d5d5 0%, #f0f0f0 100%);
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      padding-top: 100%;
+    }
+  }
+
+  /* Enable scaling 1:1 */
+  &__outer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &__inner {
+    @extend .absolutely_centered;
+    @extend .circle;
+    background: #151515;
+    width: 89%;
+    height: 89%;
+    overflow: hidden;
+
+    &::before {
+      @extend .absolutely_centered;
+      @extend .circle;
+      content: '';
+      display: block;
+      background:
+        /* Gradient, internal, top */
+        radial-gradient(
+          circle at top center,
+          rgba(#444, 0.3) 0%,
+          rgba(#444, 0.0) 100%
+        ),
+        /* circle */
+        radial-gradient(
+          rgba(#111, 0.0) 58%,
+          rgba(#222, 0.7) 60%,
+          rgba(#111, 0.0) 61%
+        );
+      box-shadow: inset 0 0 3px rgba(125, 125, 125, .2);
+      width: 90%;
+      height: 90%;
+    }
+
+    &::after {
+      @extend .circle;
+      content: '';
+      display: block;
+      background: 
+        /* dolny gradient na 50% koła */
+        radial-gradient(
+          rgba(#666, 0.8) 0%,
+          rgba(#111, 0.4) 75%,
+          rgba(#000, 0.3) 100%
+        ),
+        /* dolny gradient - rozjaśnienie */
+        radial-gradient(
+          rgba(#000, 0.6) 0%,
+          rgba(#000, 0.4) 100%
+        );
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 265%) scale(5.4);
+      z-index: 0;
+      opacity: 1;
+    }
+  }
+
+  &__subclock {
+    @extend .circle;
+    width: 42.5%;
+    height: 42.5%;
+    border: 4px solid #303030;
+    position: absolute;
+    bottom: -5%;
+    z-index: 100;
+
+    &::before {
+      @extend .absolutely_centered;
+      @extend .circle;
+      content: '';
+      display: block;
+      border-radius: 100%;
+      width: 95%;
+      height: 95%;
+      box-shadow: inset -2px 2px 30px #000;
+    }
+
+    $subclockGradientColor1: #282828;
+    $subClockGradientColor2: #0c0c0c;
+    @mixin SubclockGradient($direction) {
+      background: linear-gradient(
+        to $direction,
+        $subclockGradientColor1 0%,
+        $subClockGradientColor2 100%
+      );
+    }
+
+    &--left {
+      left: 0;
+      &::before {
+        @include SubclockGradient(left);
+      }
+    }
+    &--right {
+      right: 0;
+      &::before {
+        @include SubclockGradient(right);
+      }
+    }
+  }
+
+  &__mainClock {
+    @extend .absolutely_centered;
+    width: 75%;
+    height: 75%;
+    z-index: 100;
+    margin-top: 10%;
+  }
+  &__mainClock &__pointerBg {
+    width: 22%;
+    height: 22%;
+    background:
+      /* rozjaśnienie środek */
+      radial-gradient(
+        rgba(#fff, 0.6) 0%,
+        rgba(#fff, 0.0) 100%
+      ),
+      /* plamka lewo dół */
+      radial-gradient(
+        circle at 5% 70%,
+        rgba(#000, 0.6) 0%,
+        rgba(#000, 0.6) 12%,
+        rgba(#000, 0) 45%
+      ),
+      /* plamka prawo środek */
+      radial-gradient(
+        circle at 120% 40%,
+        rgba(#000, 0.7) 0%,
+        rgba(#000, 0.7) 10%,
+        rgba(#000, 0.0) 45%
+      ),
+      /* jasna obwódka dookoła */
+      radial-gradient(
+        rgba(#c8c8c8, 0.0) 0%,
+        rgba(#c8c8c8, 0.0) 60%,
+        rgba(#c8c8c8, 0.5) 65%
+      ),
+      /* tło główne */
+      radial-gradient(
+        #c5c5c5 0%,
+        #f0f0f0 100%
+      );
+  }
+
+  @function cavity-gradient($x, $y) {
+    $cavityColor1: #e5e5e5;
+    $cavityColor2: #d0d0d0;
+    $cavityColor3: #101010;
+    @return
+      radial-gradient(
+        circle at $x $y + 1.5%,
+        rgba(#fff, 0.5) 0%,
+        rgba(#000, 0.0) 4%
+      ),
+      radial-gradient(
+        circle at $x $y + 4%,
+        rgba(#fff, 0.8) 0%,
+        rgba(#000, 0.0) 9%
+      ),
+      radial-gradient(
+        circle at $x $y,
+        #000000 0%,
+        #404040 7%,
+        rgba(#000, 0) 8%
+      );
+  }
+  &__mainClock &__pointerBg,
+  &__subclock &__pointerBg {
+    @extend .circle;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__mainClock &__pointerBg {
+    box-shadow: 2px 4px 13px #000000;
+    &::after {
+      background:
+        cavity-gradient(16%, 51%),
+        cavity-gradient(38%, 20%),
+        cavity-gradient(74%, 31%),
+        cavity-gradient(76%, 73%),
+        cavity-gradient(38%, 81%);
+    }
+  }
+
+  &__subclock &__pointerBg {
+    width: 25%;
+    height: 23.5%;
+    box-shadow:  inset 0 -2px 3px rgba(0, 0, 0, .4);
+    background:
+      /* darkening on metal elements */
+      radial-gradient(
+        circle at 15% center,
+        rgba(#c8c8d2, 1) 0%,
+        rgba(#000, 0) 20%,
+        rgba(#000, 0) 35%
+      ),
+      radial-gradient(
+        circle at 85% center,
+        rgba(#c8c8d2, 1) 0%,
+        rgba(#000, 0) 20%,
+        rgba(#000, 0) 35%
+      ),
+      /* cavities */
+      radial-gradient(
+        circle at 48% 60%,
+        rgba(#fff, 1) 5%,
+        rgba(#000, 0) 29%
+      ),
+      radial-gradient(
+        #000000 0%,
+        #202020 18%,
+        #eff6ef 25%,
+        #eff6ef 58%,
+        #000000 100%
+      )
+    ;
+  }
+  &__pointer {
+    background: #f00;
+    box-shadow: 0 0 55px rgba(#f00, 0.8);
+    transform-origin: bottom center;
+    transition: transform 0.65s ease-out;
+    position: relative;
+    margin-left: 49%; /* 50% - width */
+    width: 2%;
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      padding-top: 2600%; /* adjust this if you change the thickness (width) of the pointer; generally: width% * 2500 */
+    }
+  }
+}

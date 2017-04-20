@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Licznik!</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+
+		<div id="content">
+			<div id="clock" class="clock__container">
+				<div class="clock__outer">
+				  <div class="clock__inner">
+				    <div class="clock__subclock clock__subclock--left">
+					    <div class="clock__pointer" id="subclock_left" data-minRotation="-55" data-maxRotation="130"></div>
+				      <div class="clock__pointerBg"></div>
+				    </div>
+				    <div class="clock__subclock clock__subclock--right">
+				      <div class="clock__pointer" id="subclock_right" data-minRotation="-130" data-maxRotation="50"></div>
+				      <div class="clock__pointerBg"></div>
+				    </div>
+				    <div class="clock__mainClock">
+			      	<div class="clock__pointer" id="mainclock" data-minRotation="-60" data-maxRotation="60"></div>
+				      <div class="clock__pointerBg"></div>
+				    </div>
+				  </div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="./main.js"></script>
+	</body>
+</html>
