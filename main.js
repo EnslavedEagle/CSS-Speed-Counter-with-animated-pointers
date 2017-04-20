@@ -5,7 +5,6 @@ function Pointer(elementId) {
 	console.log('Element: ', this.element);
 }
 Pointer.prototype.setRotation = function(rotation) {
-	console.log('Setting rotation to ' + rotation + ' degrees');
 	this.element.style.transform = `rotate(${rotation}deg)`;
 }
 Pointer.prototype.getMinRotation = function() {
