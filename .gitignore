@@ -1,2 +1,5 @@
 # Ignore dir with dependencies
 node_modules
+
+# Compiled files
+style.css
