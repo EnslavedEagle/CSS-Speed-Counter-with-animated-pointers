@@ -2,8 +2,9 @@
 
 It's a fully-responsive Speed Counter with animated pointers. Build entirely with HTML, CSS (Sass) and vanilla JavaScript.
 
+[Click here to see the live version.](http://tth.patrykb.pl/counter/)
 
-#### I'd like to edit this.
+### Cool. I'd like to edit this.
 
 No problem. Just follow the instructions below.
 
